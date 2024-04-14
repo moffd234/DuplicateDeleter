@@ -14,16 +14,16 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
         Integer[] output = new Integer[0];
         // Iterate over the initial array
-        for(int i = 0; i < array.length; i++){
+        for (Integer integer : array) {
             int count = 0;
             // Count how many times the integer at array[i] occurs
-            for(int j = 0; j < array.length; j++){
-                if(array[i].equals(array[j])){
-                    count ++;
+            for (Integer value : array) {
+                if (integer.equals(value)) {
+                    count++;
                 }
             }
-            if(count < maxNumberOfDuplications){
-                output = insertedInt(output, array[i], output.length);
+            if (count < maxNumberOfDuplications) {
+                output = insertedInt(output, integer, output.length);
             }
         }
         return output;

@@ -32,16 +32,16 @@ public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
         String[] output = new String[0];
         // Iterate over the initial array
-        for(int i = 0; i < array.length; i++){
+        for (String s : array) {
             int count = 0;
             // Count how many times the integer at array[i] occurs
-            for(int j = 0; j < array.length; j++){
-                if(array[i].equals(array[j])){
-                    count ++;
+            for (String string : array) {
+                if (s.equals(string)) {
+                    count++;
                 }
             }
-            if(count != exactNumberOfDuplications){
-                output = insertedString(output, array[i], output.length);
+            if (count != exactNumberOfDuplications) {
+                output = insertedString(output, s, output.length);
             }
         }
         return output;
