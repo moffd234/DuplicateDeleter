@@ -12,11 +12,57 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
-        return new Integer[0];
+        Integer[] output = new Integer[0];
+        // Iterate over the initial array
+        for(int i = 0; i < array.length; i++){
+            int count = 0;
+            // Count how many times the integer at array[i] occurs
+            for(int j = 0; j < array.length; j++){
+                if(array[i].equals(array[j])){
+                    count ++;
+                }
+            }
+            if(count < maxNumberOfDuplications){
+                output = insertedInt(output, array[i], output.length);
+            }
+        }
+        return output;
     }
+
+    public Integer[] insertedInt (Integer[] array, Integer insert, int index) {
+        // Create a new array with one additional element
+        Integer[] newArray = new Integer[array.length + 1];
+
+        // Copy elements from the old array to the new array, inserting the new element at the specified index
+        for (int i = 0; i < newArray.length; i++) {
+            if (i < index) {
+                newArray[i] = array[i];
+            } else if (i == index) {
+                newArray[i] = insert;
+            } else {
+                newArray[i] = array[i - 1];
+            }
+        }
+        return newArray;
+    }
+
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new Integer[0];
+            Integer[] output = new Integer[1];
+            // Iterate over the initial array
+            for (Integer value : array) {
+                int count = 0;
+                // Count how many times the integer at array[i] occurs
+                for (Integer integer : array) {
+                    if (value.equals(integer)) {
+                        count++;
+                    }
+                }
+                if (count != exactNumberOfDuplications) {
+                    output = insertedInt(output, value, output.length);
+                }
+            }
+            return output;
     }
 }
